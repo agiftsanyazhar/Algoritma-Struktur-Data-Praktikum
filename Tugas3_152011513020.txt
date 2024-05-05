@@ -1,0 +1,124 @@
+Agiftsany Azhar
+152011513020/D3-Sistem Informasi
+
+-----Main-----
+package tugas3_152011513020;
+
+import java.util.Scanner;
+
+public class Tugas3_152011513020 {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        
+        System.out.println("-------------------------------------------------");
+        System.out.println("Praktikum 3");
+        System.out.println("-------------------------------------------------");
+        Stack a;
+        
+        a = new Stack (5);
+        
+        System.out.println("-------------------------------------------------");
+        System.out.println("Nomor 1 Is Empty");
+        System.out.println("-------------------------------------------------");
+        
+        System.out.println("Stack kosong? " + a.isEmpty());
+        
+        System.out.print("\n");
+        System.out.println("-------------------------------------------------");
+        System.out.println("Nomor 2 Is Full");
+        System.out.println("-------------------------------------------------");
+        
+        System.out.println("Stack penuh? " + a.isFull());
+        
+        System.out.print("\n");
+        System.out.println("-------------------------------------------------");
+        System.out.println("Nomor 3 Push");
+        System.out.println("-------------------------------------------------");
+        
+        // Static
+//        a.push(92);
+//        a.push(23);
+//        a.push(46);
+//        a.push(51);
+//        a.push(64);
+////        a.push(53);
+//        
+//        a.printStack();
+        
+
+        // Dinamis
+        System.out.print("Masukan max   = ");
+        int n = input.nextInt();
+        a = new Stack (n);
+        
+        for (int i=0; i<n; i++){
+            System.out.print("Input Stack [" + i + "] = ");
+            int x = input.nextInt();
+            a.push(x);
+        }
+        
+        a.display();
+        
+        System.out.print("\n");
+        System.out.println("-------------------------------------------------");
+        System.out.println("Nomor 4 Pop");
+        System.out.println("-------------------------------------------------");
+        System.out.println("Data temp = " + a.pop());
+    }
+}
+
+-----Class-----
+package tugas3_152011513020;
+
+public class Stack {
+    int[] data;
+    int top;
+    int maxSize;
+    
+    Stack(int max){
+        this.maxSize    = max;
+        this.data       = new int[maxSize];
+        this.top        = -1;
+    }
+    
+    // Nomor 1
+    public boolean isEmpty(){
+        if (top == -1){
+            return true;
+        }
+        else return false;
+    }
+    
+    // Nomor 2
+    public boolean isFull(){
+        if (top == maxSize-1){
+            return true;
+        }
+        else return false;
+    }
+    
+    // Nomor 3
+    public void push(int element){
+        if (isFull() == false){
+            top ++;
+            data[top] = element;
+        }
+    }
+    
+    // Nomor 4
+    public int pop(){
+        if (isEmpty() == false){
+            int temp = data[top];
+            top --;
+            return temp;
+        }
+        else return 0;
+    }
+    
+    public void display(){
+        for (int i=0; i<maxSize; i++) {
+            System.out.print(" " + data[i] + " ");
+        }
+        System.out.print("\n\n");
+    }
+}

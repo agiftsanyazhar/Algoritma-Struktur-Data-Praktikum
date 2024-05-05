@@ -1,0 +1,145 @@
+Agiftsany Azhar
+152011513020/D3-Sistem Informasi
+
+-----Main-----
+package tugas9_152011513020;
+
+public class Tugas9_152011513020 {
+
+    public static void main(String[] args) {
+        BTree a;
+
+        a   = new BTree();
+
+        a.insert(20);
+        a.insert(10);
+        a.insert(30);
+        a.insert(17);
+        a.insert(25);
+    }
+    
+}
+
+-----Class-----
+package tugas9_152011513020;
+
+public class TNode {
+    int info;
+    TNode left;
+    TNode right;
+    
+    public TNode(int info){
+        this.info = info;
+    }
+    
+    public void setInfo(int info){
+        this.info = info;
+    }
+    
+    public int getInfo(){
+        return info;
+    }
+    
+    public void setLeft(TNode node){
+        left = node;
+    }
+    
+    public TNode getLeft(){
+        return left;
+    }
+    
+    public void setRight(TNode node){
+        right = node;
+    }
+    
+    public TNode getRight(){
+        return right;
+    }
+}
+
+-----Class-----
+package tugas9_152011513020;
+
+public class BTree {
+    TNode root;
+    int size;
+    
+    public BTree(){
+        this.root   = null;
+        this.size   = 0;
+    }
+    
+    public void insert(int info){
+        this.root   = insert(this.root,info);
+    }
+    
+    public TNode insert(TNode tnode, int info){
+        if (tnode == null){
+            tnode   = new TNode(info);
+            return tnode;
+        }
+        if (tnode.getInfo()>info){
+            tnode.setLeft(insert(tnode.getLeft(),info));
+        }
+        else if (tnode.getInfo()<info){
+            tnode.setRight(insert(tnode.getRight(), info));
+        }
+        return tnode;
+    }
+    
+    public void printPostorder(TNode tnode)
+    {
+        if (tnode == null){
+            return;
+        }
+            
+        printPostorder(tnode.left);
+
+        printPostorder(tnode.right);
+
+        System.out.print(tnode.getInfo() + " ");
+    }
+    
+    public void printPostorder() { 
+        printPostorder(root); 
+        System.out.println("");
+    }
+    
+    public void printInorder(TNode tnode)
+    {
+        if (tnode == null){
+            return;
+        }
+        
+        printInorder(tnode.left);
+
+        System.out.print(tnode.getInfo() + " ");
+        
+        printInorder(tnode.right);
+
+    }
+    
+    public void printInorder() { 
+        printInorder(root); 
+        System.out.println("");
+    }
+    
+    public void printPreorder(TNode tnode)
+    {
+        if (tnode == null){
+            return;
+        }
+        
+        System.out.print(tnode.getInfo() + " ");
+
+        printPreorder(tnode.left);
+        
+        printPreorder(tnode.right);
+
+    }
+    
+    public void printPreorder() { 
+        printPreorder(root); 
+        System.out.println("");
+    }
+}

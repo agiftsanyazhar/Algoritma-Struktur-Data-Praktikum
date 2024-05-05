@@ -1,0 +1,107 @@
+Agiftsany Azhar
+152011513020/D3-Sistem Informasi
+
+-----Main-----
+package tugas10_152011513020;
+
+import java.util.Random;
+
+public class Tugas10_152011513020 {
+    
+//    public static long bubbleSort(int size){
+//        long swap;
+//        int[] x     = new int[size];
+//        Random rand = new Random();
+//
+//        //Memasukan Angka Random 
+//        for (int i=0; i<size; i++){
+//            x[i]    = rand.nextInt(10000000);
+//        }
+//
+//        //Sorting
+//        swap = 0;
+//        for (int i=2; i<size; i++){
+//            for (int j=0; j<size-i; j++){
+//                if(x[j] > x[j+1]){
+//                    int temp    = x[j+1];
+//                    x[j+1]      = x[j];
+//                    x[j]        = temp;
+//
+//                    swap++;
+//                }
+//            }
+//        }
+//        return swap;
+//    }
+
+    public static void main(String[] args) {
+//        Tugas10_152011513020 a;
+//        
+//        a   = new Tugas10_152011513020();
+//        
+//        a.bubbleSort(1000);
+//        
+//        System.out.println(a.bubbleSort(1000));
+        
+        //Class
+        Bubble arr;
+
+        arr = new Bubble(10);
+        
+        arr.random(20);
+        arr.bubbleSort();
+        arr.print();
+    }   
+}
+
+-----Class-----
+package tugas10_152011513020;
+
+import java.util.Random;
+
+public class Bubble {
+    private int max;
+    private int size;
+    private int []data;
+    
+    public Bubble(int maxSize){
+        this.data   = new int [maxSize];
+        this.max    = maxSize;
+        this.size   = 0;
+    }
+    
+    public void random(int n){
+        Random r    = new Random();
+        for(int i=0; i<this.max; i++){
+            this.data[i]    = r.nextInt(n);
+        }
+    }
+    
+    public void tukar(int i, int j){
+        int z   = data[i];
+        data[i] = data[j];
+        data[j] = z;
+        System.out.println("Yang ditukar = " + data[i] + " dan " + data[j]);
+    }
+    
+     public void bubbleSort(){
+        int x[]     = this.data;
+        int n       = this.max;
+        long total  = 0;
+        for(int i=1; i<n; i++){  
+            for(int j=0; j<(n-i); j++){  
+                if(x[j] > x[j+1]){   
+                    tukar(j,j+1);
+                    total++;
+                }                
+            }  
+        } 
+        System.out.println("Total swap  = " + total);
+    }
+    
+    public void print(){
+        for (int i=0; i<this.max; i++){
+            System.out.print(this.data[i] + " ");
+        }
+    }
+}
